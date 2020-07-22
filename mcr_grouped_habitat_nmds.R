@@ -9,10 +9,11 @@ com_matrix = as.matrix(com)
 
 #run metaMDS, set.seed is to maintain consistency 
 set.seed(123)
-nmds <- metaMDS(com_matrix, distance = "bray")
+nmds <- metaMDS(com_matrix, distance = "bray", k=2, trymax = 50, autotransform = FALSE)
 nmds
 
-plot(nmds)
+stressplot(nmds)
+ordiplot(nmds, type = "text")
 
 #extract NMDS x and y coordinates and put in new data frame
 nmds_df <- as.data.frame(scores(nmds))
